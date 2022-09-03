@@ -60,8 +60,8 @@ const Table = () => {
                     </div>
                     <span>
                       {{
-                        asc: ' 🔼',
-                        desc: ' 🔽',
+                        asc: '🔼',
+                        desc: '🔽',
                       }[header.column.getIsSorted() as string] ?? null}
                     </span>
                   </div>
