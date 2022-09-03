@@ -2,7 +2,7 @@ import { CSSProperties } from 'react';
 
 const table: CSSProperties = {
   border: '1px solid lightgray',
-  textAlign: 'center',
+  textAlign: 'left',
   width: '100%',
 };
 

@@ -47,18 +47,23 @@ const Table = () => {
                 key={header.id}
               >
                 {header.isPlaceholder ? null : (
-                  <div
-                    className="overflowEllipse"
-                    onClick={header.column.getToggleSortingHandler()}
-                    style={{
-                      cursor: header.column.getCanSort() ? 'pointer' : '',
-                    }}
-                  >
-                    {flexRender(header.column.columnDef.header, header.getContext())}
-                    {{
-                      asc: ' 🔼',
-                      desc: ' 🔽',
-                    }[header.column.getIsSorted() as string] ?? null}
+                  <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+                    <div
+                      className="overflowEllipse"
+                      onClick={header.column.getToggleSortingHandler()}
+                      style={{
+                        cursor: header.column.getCanSort() ? 'pointer' : '',
+                        width: '100%',
+                      }}
+                    >
+                      {flexRender(header.column.columnDef.header, header.getContext())}
+                    </div>
+                    <span>
+                      {{
+                        asc: ' 🔼',
+                        desc: ' 🔽',
+                      }[header.column.getIsSorted() as string] ?? null}
+                    </span>
                   </div>
                 )}
               </th>
