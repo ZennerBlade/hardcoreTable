@@ -1,4 +1,5 @@
 import {
+  Column,
   flexRender,
   getCoreRowModel,
   getSortedRowModel,
@@ -8,11 +9,28 @@ import {
 import { data } from './data';
 import { columns } from './column';
 import { tableStyle } from './styles';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
-const Table = () => {
+interface ITable<T> {
+  tableVisibility: (param: {
+    isAllColumnVisible: boolean;
+    toggleAllColumnsVisibilityHandler: (event: unknown) => void;
+    getAllLeafColumns: Column<T, unknown>[];
+  }) => void;
+}
+
+const Table = ({ tableVisibility }: ITable<typeof data[0]>) => {
   const [sorting, setSorting] = useState<SortingState>([]);
   const [rowSelection, setRowSelection] = useState({});
+  const [columnVisibility, setColumnVisibility] = useState({});
+
+  useEffect(() => {
+    tableVisibility({
+      isAllColumnVisible: table.getIsAllColumnsVisible(),
+      toggleAllColumnsVisibilityHandler: table.getToggleAllColumnsVisibilityHandler(),
+      getAllLeafColumns: table.getAllLeafColumns(),
+    });
+  }, [columnVisibility]);
 
   const table = useReactTable({
     data,
@@ -20,8 +38,10 @@ const Table = () => {
     state: {
       sorting,
       rowSelection,
+      columnVisibility,
     },
     onSortingChange: setSorting,
+    onColumnVisibilityChange: setColumnVisibility,
     onRowSelectionChange: setRowSelection,
     getSortedRowModel: getSortedRowModel(),
     getCoreRowModel: getCoreRowModel(),
