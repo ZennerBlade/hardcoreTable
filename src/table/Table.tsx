@@ -1,5 +1,6 @@
 import {
   Column,
+  ColumnOrderState,
   flexRender,
   getCoreRowModel,
   getSortedRowModel,
@@ -10,6 +11,7 @@ import { data } from './data';
 import { columns } from './column';
 import { tableStyle } from './styles';
 import { useEffect, useState } from 'react';
+import DraggableColumnHeader from './DraggableColumnHeader';
 
 interface ITable<T> {
   tableVisibility: (param: {
@@ -23,6 +25,11 @@ const Table = ({ tableVisibility }: ITable<typeof data[0]>) => {
   const [sorting, setSorting] = useState<SortingState>([]);
   const [rowSelection, setRowSelection] = useState({});
   const [columnVisibility, setColumnVisibility] = useState({});
+  const [columnOrder, setColumnOrder] = useState<ColumnOrderState>(
+    columns.map((column) => column.id as string) //must start out with populated columnOrder so we can splice
+  );
+
+  console.log('Col odr ', columns);
 
   useEffect(() => {
     tableVisibility({
@@ -39,9 +46,11 @@ const Table = ({ tableVisibility }: ITable<typeof data[0]>) => {
       sorting,
       rowSelection,
       columnVisibility,
+      columnOrder,
     },
     onSortingChange: setSorting,
     onColumnVisibilityChange: setColumnVisibility,
+    onColumnOrderChange: setColumnOrder,
     onRowSelectionChange: setRowSelection,
     getSortedRowModel: getSortedRowModel(),
     getCoreRowModel: getCoreRowModel(),
@@ -59,34 +68,7 @@ const Table = ({ tableVisibility }: ITable<typeof data[0]>) => {
         {table.getHeaderGroups().map((headerGroup) => (
           <tr key={headerGroup.id}>
             {headerGroup.headers.map((header) => (
-              <th
-                style={{
-                  maxWidth: tableStyle.minCellWidth,
-                  width: header.id === 'select' ? '22px' : '',
-                }}
-                key={header.id}
-              >
-                {header.isPlaceholder ? null : (
-                  <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-                    <div
-                      className="overflowEllipse"
-                      onClick={header.column.getToggleSortingHandler()}
-                      style={{
-                        cursor: header.column.getCanSort() ? 'pointer' : '',
-                        width: '100%',
-                      }}
-                    >
-                      {flexRender(header.column.columnDef.header, header.getContext())}
-                    </div>
-                    <span>
-                      {{
-                        asc: '🔼',
-                        desc: '🔽',
-                      }[header.column.getIsSorted() as string] ?? null}
-                    </span>
-                  </div>
-                )}
-              </th>
+              <DraggableColumnHeader key={header.id} header={header} table={table} />
             ))}
           </tr>
         ))}

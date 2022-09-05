@@ -24,9 +24,10 @@ export const columns = [
         }}
       />
     ),
+    id: 'select',
     enableSorting: false,
   }),
-  columnHelper.accessor('firstName', {}),
+  columnHelper.accessor('firstName', { id: 'firstName' }),
   columnHelper.accessor((row) => row.lastName, {
     id: 'lastName',
     cell: (info) => <i>{info.getValue()}</i>,
@@ -34,14 +35,18 @@ export const columns = [
   }),
   columnHelper.accessor('age', {
     header: 'Age',
+    id: 'age',
   }),
   columnHelper.accessor('visits', {
     header: () => <span>Visits</span>,
+    id: 'visits',
   }),
   columnHelper.accessor('status', {
     header: 'Status',
+    id: 'status',
   }),
   columnHelper.accessor('progress', {
     header: 'Profile Progress',
+    id: 'progress',
   }),
 ];
