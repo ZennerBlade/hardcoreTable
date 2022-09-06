@@ -3,7 +3,7 @@ import { ITableFn } from '../App';
 export function ShowHideTableColumn(tableFn: ITableFn) {
   console.log(tableFn);
   return (
-    <div style={{ display: 'flex', gap: '2rem' }}>
+    <div style={{ display: 'flex', gap: '2rem', flexWrap: 'wrap' }}>
       <div
         style={{
           display: 'flex',
