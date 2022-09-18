@@ -12,6 +12,7 @@ import { columns } from './column';
 import { tableStyle } from './styles';
 import { useEffect, useState } from 'react';
 import DraggableColumnHeader from './DraggableColumnHeader';
+import { columnOrderGenerator } from './columnOrderGenerator';
 
 interface ITable<T> {
   tableVisibility: (param: {
@@ -25,9 +26,7 @@ const Table = ({ tableVisibility }: ITable<typeof data[0]>) => {
   const [sorting, setSorting] = useState<SortingState>([]);
   const [rowSelection, setRowSelection] = useState({});
   const [columnVisibility, setColumnVisibility] = useState({});
-  const [columnOrder, setColumnOrder] = useState<ColumnOrderState>(
-    columns.map((column) => column.id as string) //must start out with populated columnOrder so we can splice
-  );
+  const [columnOrder, setColumnOrder] = useState<ColumnOrderState>(columnOrderGenerator(columns));
 
   console.log('Col odr ', columns);
 

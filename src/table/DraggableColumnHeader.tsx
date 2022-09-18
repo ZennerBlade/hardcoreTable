@@ -50,6 +50,7 @@ const DraggableColumnHeader: FC<{
       }}
       ref={dropRef}
       key={header.id}
+      colSpan={header.colSpan}
     >
       {header.isPlaceholder ? null : (
         <div

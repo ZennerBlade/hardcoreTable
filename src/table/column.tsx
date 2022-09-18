@@ -5,7 +5,7 @@ import Checkbox from './Checkbox';
 const columnHelper = createColumnHelper<Person>();
 
 export const columns = [
-  columnHelper.accessor('select', {
+  columnHelper.display({
     header: ({ table }) => (
       <Checkbox
         {...{
@@ -25,29 +25,40 @@ export const columns = [
       />
     ),
     id: 'select',
-    enableSorting: false,
     size: 50,
   }),
-  columnHelper.accessor('firstName', { id: 'firstName' }),
-  columnHelper.accessor((row) => row.lastName, {
-    id: 'lastName',
-    cell: (info) => <i>{info.getValue()}</i>,
-    header: () => <span>Last Name</span>,
+  columnHelper.group({
+    header: 'Name',
+    id: 'name',
+    columns: [
+      columnHelper.accessor('firstName', { id: 'firstName' }),
+      columnHelper.accessor('lastName', {
+        id: 'lastName',
+        cell: (info) => <i>{info.getValue()}</i>,
+        header: () => <span>Last Name</span>,
+      }),
+    ],
   }),
-  columnHelper.accessor('age', {
-    header: 'Age',
-    id: 'age',
-  }),
-  columnHelper.accessor('visits', {
-    header: () => <span>Visits</span>,
-    id: 'visits',
-  }),
-  columnHelper.accessor('status', {
-    header: 'Status',
-    id: 'status',
-  }),
-  columnHelper.accessor('progress', {
-    header: 'Profile Progress',
-    id: 'progress',
+  columnHelper.group({
+    header: 'Misc',
+    id: 'misc',
+    columns: [
+      columnHelper.accessor('age', {
+        header: 'Age',
+        id: 'age',
+      }),
+      columnHelper.accessor('visits', {
+        header: () => <span>Visits</span>,
+        id: 'visits',
+      }),
+      columnHelper.accessor('status', {
+        header: 'Status',
+        id: 'status',
+      }),
+      columnHelper.accessor('progress', {
+        header: 'Profile Progress',
+        id: 'progress',
+      }),
+    ],
   }),
 ];
