@@ -1,7 +1,6 @@
 import { CSSProperties } from 'react';
 
 const table: CSSProperties = {
-  textAlign: 'left',
   width: '100%',
   borderSpacing: 0,
 };
