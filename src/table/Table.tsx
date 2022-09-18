@@ -26,7 +26,9 @@ const Table = ({ tableVisibility }: ITable<typeof data[0]>) => {
   const [sorting, setSorting] = useState<SortingState>([]);
   const [rowSelection, setRowSelection] = useState({});
   const [columnVisibility, setColumnVisibility] = useState({});
-  const [columnOrder, setColumnOrder] = useState<ColumnOrderState>(columnOrderGenerator(columns));
+  const [columnOrder, setColumnOrder] = useState<ColumnOrderState>(() =>
+    columnOrderGenerator(columns)
+  );
 
   console.log('Col odr ', columns);
 
@@ -92,7 +94,7 @@ const Table = ({ tableVisibility }: ITable<typeof data[0]>) => {
                       ]?.toString()
                     : ''
                 }
-                style={{ maxWidth: 0 }}
+                style={{ maxWidth: 0, ...tableStyle.row }}
               >
                 {flexRender(cell.column.columnDef.cell, cell.getContext())}
               </td>

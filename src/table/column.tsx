@@ -28,7 +28,7 @@ export const columns = [
     size: 50,
   }),
   columnHelper.group({
-    header: () => <i>Name</i>,
+    header: () => <i style={{ color: 'yellow' }}>Name</i>,
     id: 'name',
     columns: [
       columnHelper.accessor('firstName', { id: 'firstName' }),

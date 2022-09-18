@@ -4,9 +4,9 @@ export type Person = {
   lastName: string;
   age: number;
   visits: number;
+  visits_cell_style?: string;
   status: string;
   progress: number;
-  progress_cell_style?: string;
   style?: string;
 };
 
@@ -18,16 +18,80 @@ export const data: Person[] = [
     visits: 100,
     status: 'In Relationship',
     progress: 50,
-    progress_cell_style: 'cellColor',
-    style: 'read-the-docs',
   },
   {
     firstName: 'tandy',
     lastName: 'miller',
     age: 40,
     visits: 40,
+    visits_cell_style: 'cellColor',
     status: 'Single',
     progress: 80,
+    style: 'rowColor',
+  },
+  {
+    firstName: 'joe',
+    lastName: 'dirte',
+    age: 45,
+    visits: 20,
+    status: 'Complicated',
+    progress: 10,
+  },
+  {
+    firstName: 'joe',
+    lastName: 'dirte',
+    age: 45,
+    visits: 20,
+    status: 'Complicated',
+    progress: 10,
+  },
+  {
+    firstName: 'joe',
+    lastName: 'dirte',
+    age: 45,
+    visits: 20,
+    status: 'Complicated',
+    progress: 10,
+  },
+  {
+    firstName: 'joe',
+    lastName: 'dirte',
+    age: 45,
+    visits: 20,
+    status: 'Complicated',
+    progress: 10,
+  },
+  {
+    firstName: 'joe',
+    lastName: 'dirte',
+    age: 45,
+    visits: 20,
+    status: 'Complicated',
+    progress: 10,
+  },
+  {
+    firstName: 'joe',
+    lastName: 'dirte',
+    age: 45,
+    visits: 20,
+    status: 'Complicated',
+    progress: 10,
+  },
+  {
+    firstName: 'joe',
+    lastName: 'dirte',
+    age: 45,
+    visits: 20,
+    status: 'Complicated',
+    progress: 10,
+  },
+  {
+    firstName: 'joe',
+    lastName: 'dirte',
+    age: 45,
+    visits: 20,
+    status: 'Complicated',
+    progress: 10,
   },
   {
     firstName: 'joe',

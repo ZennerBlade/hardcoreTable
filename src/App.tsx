@@ -18,7 +18,7 @@ function App() {
     <div className="App">
       {tableFn && ShowHideTableColumn(tableFn)}
 
-      <div style={{ overflowX: 'auto' }}>
+      <div style={{ overflow: 'auto', height: '300px' }}>
         <Table tableVisibility={(param) => setTableFn(param)} />
       </div>
     </div>

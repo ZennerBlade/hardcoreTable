@@ -2,6 +2,7 @@ import { Column, ColumnOrderState, flexRender, Header, Table } from '@tanstack/r
 import { FC } from 'react';
 import { data } from './data';
 import { useDrag, useDrop } from 'react-dnd';
+import { tableStyle } from './styles';
 
 const reorderColumn = (
   draggedColumnId: string,
@@ -47,6 +48,7 @@ const DraggableColumnHeader: FC<{
         width: header.getSize(),
         opacity: isDragging ? 0.5 : 1,
         position: 'relative',
+        ...tableStyle.columnHeader,
       }}
       ref={dropRef}
       key={header.id}

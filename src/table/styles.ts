@@ -1,26 +1,38 @@
 import { CSSProperties } from 'react';
 
 const table: CSSProperties = {
-  border: '1px solid lightgray',
   textAlign: 'left',
   width: '100%',
+  borderSpacing: 0,
 };
 
 const header: CSSProperties = {
-  background: 'red',
+  background: '#145DA0',
+  position: 'sticky',
+  top: '0px',
+};
+
+const columnHeader: CSSProperties = {
+  border: '1px solid black',
 };
 
 const body: CSSProperties = {
-  background: 'purple',
+  background: '#0C2D48',
 };
 
 const selectedRow: CSSProperties = {
-  backgroundColor: 'rgba(46, 210, 102, 0.6)',
+  backgroundColor: '#B1D4E05A',
+};
+
+const row: CSSProperties = {
+  borderBottom: '1px solid black',
 };
 
 export const tableStyle = {
   table,
   header,
+  columnHeader,
   body,
   selectedRow,
+  row,
 };

@@ -32,10 +32,11 @@
 
 .cellColor {
   color: yellow;
+  border-inline: 1px solid salmon;
 }
 
-.read-the-docs {
-  color: rgb(0, 0, 0);
+.rowColor {
+  color: #2E8BC0;
 }
 
 td {
@@ -47,6 +48,8 @@ td {
 
 th {
   padding: 0.25rem;
+  position: sticky;
+  top: 0;
 }
 
 .overflowEllipse {
@@ -73,7 +76,7 @@ input {
 }
 
 .resizer.isResizing {
-  background: blue;
+  background: rgb(0, 185, 123);
   opacity: 1;
 }
 
@@ -86,6 +89,7 @@ input {
     opacity: 1;
   }
 }
+
 input {
   margin: 0;
   width: auto;
