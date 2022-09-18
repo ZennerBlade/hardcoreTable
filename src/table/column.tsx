@@ -28,7 +28,7 @@ export const columns = [
     size: 50,
   }),
   columnHelper.group({
-    header: 'Name',
+    header: () => <i>Name</i>,
     id: 'name',
     columns: [
       columnHelper.accessor('firstName', { id: 'firstName' }),
