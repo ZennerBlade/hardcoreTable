@@ -62,7 +62,11 @@ const DraggableColumnHeader: FC<{
             justifyContent: tableStyle.table.textAlign ?? 'space-between',
             width: '100%',
           }}
-          // style={{ display: 'flex', justifyContent: 'space-between', width: 'inherit' }}
+          // style={{
+          //   display: 'flex',
+          //   justifyContent: tableStyle.table.textAlign ?? 'space-between',
+          //   width: 'inherit',
+          // }}
         >
           <div
             ref={dragRef}
