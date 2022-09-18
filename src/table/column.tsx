@@ -26,6 +26,7 @@ export const columns = [
     ),
     id: 'select',
     enableSorting: false,
+    size: 50,
   }),
   columnHelper.accessor('firstName', { id: 'firstName' }),
   columnHelper.accessor((row) => row.lastName, {

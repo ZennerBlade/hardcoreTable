@@ -2,7 +2,6 @@ import { Column, ColumnOrderState, flexRender, Header, Table } from '@tanstack/r
 import { FC } from 'react';
 import { data } from './data';
 import { useDrag, useDrop } from 'react-dnd';
-import { tableStyle } from './styles';
 
 const reorderColumn = (
   draggedColumnId: string,
@@ -25,8 +24,6 @@ const DraggableColumnHeader: FC<{
   const { columnOrder } = getState();
   const { column } = header;
 
-  console.log('header ', header);
-
   const [, dropRef] = useDrop({
     accept: 'column',
     drop: (draggedColumn: Column<typeof data[0]>) => {
@@ -46,22 +43,26 @@ const DraggableColumnHeader: FC<{
   return (
     <th
       style={{
-        maxWidth: tableStyle.minCellWidth,
-        width: header.id === 'select' ? '22px' : '',
+        maxWidth: header.getSize(),
+        width: header.getSize(),
         opacity: isDragging ? 0.5 : 1,
+        position: 'relative',
       }}
       ref={dropRef}
       key={header.id}
     >
       {header.isPlaceholder ? null : (
-        <div ref={previewRef} style={{ display: 'flex', justifyContent: 'space-between' }}>
+        <div
+          ref={previewRef}
+          style={{ display: 'flex', justifyContent: 'space-between', width: '100%' }}
+          // style={{ display: 'flex', justifyContent: 'space-between', width: 'inherit' }}
+        >
           <div
             ref={dragRef}
             className="overflowEllipse"
             onClick={header.column.getToggleSortingHandler()}
             style={{
               cursor: header.column.getCanSort() ? 'pointer' : '',
-              width: '100%',
             }}
           >
             {flexRender(header.column.columnDef.header, header.getContext())}
@@ -74,6 +75,13 @@ const DraggableColumnHeader: FC<{
           </span>
         </div>
       )}
+      <div
+        {...{
+          onMouseDown: header.getResizeHandler(),
+          onTouchStart: header.getResizeHandler(),
+          className: `resizer ${header.column.getIsResizing() ? 'isResizing' : ''}`,
+        }}
+      />
     </th>
   );
 };

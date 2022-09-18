@@ -37,11 +37,12 @@ const Table = ({ tableVisibility }: ITable<typeof data[0]>) => {
       toggleAllColumnsVisibilityHandler: table.getToggleAllColumnsVisibilityHandler(),
       getAllLeafColumns: table.getAllLeafColumns(),
     });
-  }, [columnVisibility]);
+  }, [columnVisibility, columnOrder]);
 
   const table = useReactTable({
     data,
     columns,
+    columnResizeMode: 'onChange',
     state: {
       sorting,
       rowSelection,
@@ -92,7 +93,7 @@ const Table = ({ tableVisibility }: ITable<typeof data[0]>) => {
                       ]?.toString()
                     : ''
                 }
-                style={{ maxWidth: tableStyle.minCellWidth }}
+                style={{ maxWidth: 0 }}
               >
                 {flexRender(cell.column.columnDef.cell, cell.getContext())}
               </td>

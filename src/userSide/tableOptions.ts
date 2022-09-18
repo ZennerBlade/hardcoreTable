@@ -6,4 +6,5 @@ export const tableOptions = {
     descending: 'down',
   },
   styles: tableStyle,
+  fitContainer: true,
 };
