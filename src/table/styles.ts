@@ -27,7 +27,16 @@ const row: CSSProperties = {
   borderBottom: '1px solid black',
 };
 
-export const tableStyle = {
+export interface ITableStyles {
+  table: CSSProperties;
+  header: CSSProperties;
+  columnHeader: CSSProperties;
+  body: CSSProperties;
+  selectedRow: CSSProperties;
+  row: CSSProperties;
+}
+
+export const tableStyle: ITableStyles = {
   table,
   header,
   columnHeader,

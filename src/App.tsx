@@ -2,8 +2,9 @@ import { Column } from '@tanstack/react-table';
 import { useState } from 'react';
 import './App.css';
 import { ShowHideTableColumn } from './userSide/ShowHideTableColumn';
-import { Person } from './userSide/data';
+import { data, Person } from './userSide/data';
 import Table from './table/Table';
+import { tableOptions } from './userSide/tableOptions';
 
 export interface ITableFn {
   isAllColumnVisible: boolean;
@@ -18,7 +19,11 @@ function App() {
     <div className="App">
       {tableFn && ShowHideTableColumn(tableFn)}
 
-      <Table tableVisibility={(param) => setTableFn(param)} />
+      <Table<Person>
+        data={data}
+        tableOptions={tableOptions}
+        tableVisibility={(param) => setTableFn(param)}
+      />
     </div>
   );
 }

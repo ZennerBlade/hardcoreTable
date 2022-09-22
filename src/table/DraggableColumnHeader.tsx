@@ -1,8 +1,9 @@
 import { Column, ColumnOrderState, flexRender, Header, Table } from '@tanstack/react-table';
-import { FC } from 'react';
 import { data } from '../userSide/data';
 import { useDrag, useDrop } from 'react-dnd';
 import { tableStyle } from './styles';
+import { ITableOptions } from './Table';
+import { tableOptions } from '../userSide/tableOptions';
 
 const reorderColumn = (
   draggedColumnId: string,
@@ -17,10 +18,13 @@ const reorderColumn = (
   return [...columnOrder];
 };
 
-const DraggableColumnHeader: FC<{
-  header: Header<typeof data[0], unknown>;
-  table: Table<typeof data[0]>;
-}> = ({ header, table }) => {
+interface IDraggableColumnHeaderProps<T> {
+  header: Header<T, unknown>;
+  table: Table<T>;
+  tableOptions: ITableOptions<T>;
+}
+
+const DraggableColumnHeader = <T,>({ header, table }: IDraggableColumnHeaderProps<T>) => {
   const { getState, setColumnOrder } = table;
   const { columnOrder } = getState();
   const { column } = header;
@@ -60,13 +64,8 @@ const DraggableColumnHeader: FC<{
           style={{
             display: 'flex',
             justifyContent: tableStyle.table.textAlign ?? 'space-between',
-            width: '100%',
+            width: tableOptions.fitContainer ? '100%' : 'inherit',
           }}
-          // style={{
-          //   display: 'flex',
-          //   justifyContent: tableStyle.table.textAlign ?? 'space-between',
-          //   width: 'inherit',
-          // }}
         >
           <div
             ref={dragRef}
@@ -80,8 +79,8 @@ const DraggableColumnHeader: FC<{
           </div>
           <span>
             {{
-              asc: '🔼',
-              desc: '🔽',
+              asc: tableOptions.sortIcons?.ascending ?? '🔼',
+              desc: tableOptions.sortIcons?.descending ?? '🔽',
             }[header.column.getIsSorted() as string] ?? null}
           </span>
         </div>
