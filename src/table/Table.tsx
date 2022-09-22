@@ -65,44 +65,46 @@ const Table = ({ tableVisibility }: ITable<typeof data[0]>) => {
   );
 
   return (
-    <table style={tableStyle.table}>
-      <thead style={tableStyle.header}>
-        {table.getHeaderGroups().map((headerGroup) => (
-          <tr key={headerGroup.id}>
-            {headerGroup.headers.map((header) => (
-              <DraggableColumnHeader key={header.id} header={header} table={table} />
-            ))}
-          </tr>
-        ))}
-      </thead>
-      <tbody style={tableStyle.body}>
-        {table.getRowModel().rows.map((row) => (
-          <tr
-            className={row.original.style ?? ''}
-            style={
-              table.getSelectedRowModel().rowsById[row.id] ? tableStyle.selectedRow : undefined
-            }
-            key={row.id}
-          >
-            {row.getVisibleCells().map((cell) => (
-              <td
-                key={cell.id}
-                className={
-                  `${cell.column.id}_cell_style` in row.original
-                    ? row.original[
-                        `${cell.column.id}_cell_style` as keyof typeof row.original
-                      ]?.toString()
-                    : ''
-                }
-                style={{ maxWidth: 0, ...tableStyle.row }}
-              >
-                {flexRender(cell.column.columnDef.cell, cell.getContext())}
-              </td>
-            ))}
-          </tr>
-        ))}
-      </tbody>
-    </table>
+    <div style={{ overflow: 'auto', height: '300px' }}>
+      <table style={tableStyle.table}>
+        <thead style={tableStyle.header}>
+          {table.getHeaderGroups().map((headerGroup) => (
+            <tr key={headerGroup.id}>
+              {headerGroup.headers.map((header) => (
+                <DraggableColumnHeader key={header.id} header={header} table={table} />
+              ))}
+            </tr>
+          ))}
+        </thead>
+        <tbody style={tableStyle.body}>
+          {table.getRowModel().rows.map((row) => (
+            <tr
+              className={row.original.style ?? ''}
+              style={
+                table.getSelectedRowModel().rowsById[row.id] ? tableStyle.selectedRow : undefined
+              }
+              key={row.id}
+            >
+              {row.getVisibleCells().map((cell) => (
+                <td
+                  key={cell.id}
+                  className={
+                    `${cell.column.id}_cell_style` in row.original
+                      ? row.original[
+                          `${cell.column.id}_cell_style` as keyof typeof row.original
+                        ]?.toString()
+                      : ''
+                  }
+                  style={{ maxWidth: 0, ...tableStyle.row }}
+                >
+                  {flexRender(cell.column.columnDef.cell, cell.getContext())}
+                </td>
+              ))}
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
   );
 };
 
