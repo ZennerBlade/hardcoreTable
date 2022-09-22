@@ -2,7 +2,7 @@ import { Column } from '@tanstack/react-table';
 import { useState } from 'react';
 import './App.css';
 import { ShowHideTableColumn } from './userSide/ShowHideTableColumn';
-import { Person } from './table/data';
+import { Person } from './userSide/data';
 import Table from './table/Table';
 
 export interface ITableFn {

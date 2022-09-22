@@ -7,7 +7,7 @@ import {
   SortingState,
   useReactTable,
 } from '@tanstack/react-table';
-import { data } from './data';
+import { data } from '../userSide/data';
 import { columns } from './column';
 import { tableStyle } from './styles';
 import { useEffect, useState } from 'react';

@@ -1,4 +1,4 @@
-import { Person } from './data';
+import { Person } from '../userSide/data';
 import { createColumnHelper } from '@tanstack/react-table';
 import Checkbox from './Checkbox';
 

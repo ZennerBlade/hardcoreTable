@@ -1,5 +1,5 @@
 import { CellContext } from '@tanstack/react-table';
-import { Person } from './data';
+import { Person } from '../userSide/data';
 
 interface IColumnData {
   id: string;

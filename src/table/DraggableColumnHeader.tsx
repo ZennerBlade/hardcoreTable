@@ -1,6 +1,6 @@
 import { Column, ColumnOrderState, flexRender, Header, Table } from '@tanstack/react-table';
 import { FC } from 'react';
-import { data } from './data';
+import { data } from '../userSide/data';
 import { useDrag, useDrop } from 'react-dnd';
 import { tableStyle } from './styles';
 
