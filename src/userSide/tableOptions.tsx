@@ -1,6 +1,5 @@
 import { ColumnDef } from '@tanstack/react-table';
 import Checkbox from '../table/Checkbox';
-import { tableStyle } from '../table/styles';
 import { ITableOptions } from '../table/Table';
 import { Person } from './data';
 
@@ -75,7 +74,6 @@ const columns: ColumnDef<Person>[] = [
 ];
 
 export const tableOptions: ITableOptions<Person> = {
-  styles: tableStyle,
   fitContainer: true,
   tableHeight: '300px',
   columns,

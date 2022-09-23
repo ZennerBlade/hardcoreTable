@@ -8,7 +8,7 @@ import {
   SortingState,
   useReactTable,
 } from '@tanstack/react-table';
-import { ITableStyles, tableStyle } from './styles';
+import { ITableStyles, overriddenStyle } from './styles';
 import { useEffect, useState } from 'react';
 import DraggableColumnHeader from './DraggableColumnHeader';
 import { columnOrderGenerator } from './columnOrderGenerator';
@@ -18,7 +18,7 @@ export interface ITableOptions<T> {
     ascending: string | JSX.Element;
     descending: string | JSX.Element;
   };
-  styles?: ITableStyles;
+  styles?: Partial<ITableStyles>;
   fitContainer?: boolean;
   tableHeight?: string;
   columns: ColumnDef<T, unknown>[];
@@ -41,6 +41,7 @@ const Table = <T,>({ tableVisibility, tableOptions, data }: ITableProps<T>) => {
   const [columnOrder, setColumnOrder] = useState<ColumnOrderState>(() =>
     columnOrderGenerator(tableOptions.columns)
   );
+  const [tableStyle] = useState(overriddenStyle(tableOptions.styles));
 
   console.log('Col odr ', tableOptions.columns);
 
@@ -88,6 +89,7 @@ const Table = <T,>({ tableVisibility, tableOptions, data }: ITableProps<T>) => {
                   header={header}
                   table={table}
                   tableOptions={tableOptions}
+                  tableStyle={tableStyle}
                 />
               ))}
             </tr>

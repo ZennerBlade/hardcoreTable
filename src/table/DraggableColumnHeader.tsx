@@ -1,9 +1,9 @@
 import { Column, ColumnOrderState, flexRender, Header, Table } from '@tanstack/react-table';
 import { data } from '../userSide/data';
 import { useDrag, useDrop } from 'react-dnd';
-import { tableStyle } from './styles';
 import { ITableOptions } from './Table';
 import { tableOptions } from '../userSide/tableOptions';
+import { ITableStyles } from './styles';
 
 const reorderColumn = (
   draggedColumnId: string,
@@ -22,9 +22,14 @@ interface IDraggableColumnHeaderProps<T> {
   header: Header<T, unknown>;
   table: Table<T>;
   tableOptions: ITableOptions<T>;
+  tableStyle: Partial<ITableStyles>;
 }
 
-const DraggableColumnHeader = <T,>({ header, table }: IDraggableColumnHeaderProps<T>) => {
+const DraggableColumnHeader = <T,>({
+  header,
+  table,
+  tableStyle,
+}: IDraggableColumnHeaderProps<T>) => {
   const { getState, setColumnOrder } = table;
   const { columnOrder } = getState();
   const { column } = header;
@@ -63,7 +68,7 @@ const DraggableColumnHeader = <T,>({ header, table }: IDraggableColumnHeaderProp
           ref={previewRef}
           style={{
             display: 'flex',
-            justifyContent: tableStyle.table.textAlign ?? 'space-between',
+            justifyContent: tableStyle?.table?.textAlign ?? 'space-between',
             width: tableOptions.fitContainer ? '100%' : 'inherit',
           }}
         >

@@ -36,11 +36,22 @@ export interface ITableStyles {
   row: CSSProperties;
 }
 
-export const tableStyle: ITableStyles = {
+const tableStyle: Partial<ITableStyles> = {
   table,
   header,
   columnHeader,
   body,
   selectedRow,
   row,
+};
+
+export const overriddenStyle = (userStyles: Partial<ITableStyles> | undefined) => {
+  const userStylesToOverride = userStyles ?? {};
+  for (const key of Object.keys(tableStyle)) {
+    tableStyle[key as keyof ITableStyles] = {
+      ...tableStyle[key as keyof ITableStyles],
+      ...userStylesToOverride[key as keyof ITableStyles],
+    };
+  }
+  return tableStyle;
 };
